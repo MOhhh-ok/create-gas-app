@@ -1,6 +1,9 @@
 {
     "name": "@masa-dev/create-gas-app",
-    "version": "0.0.1",
+    "version": "0.1.0",
+    "publishConfig": {
+        "access": "public"
+    },
     "description": "Create a new Google Apps Script project with typescript",
     "bin": {
         "create-gas-app": "./dist/main.js"
