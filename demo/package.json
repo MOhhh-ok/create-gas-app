@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "start": "pnpm i && create-gas-app"
+    },
+    "devDependencies": {
+        "@masa-dev/create-gas-app": "file:../"
+    }
+}
