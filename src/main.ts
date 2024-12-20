@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { copyFiles } from './features/assets/utils';
 import { createClaspProject } from './features/clasp/utils';
 import { initCwd } from './features/exec/utils';
