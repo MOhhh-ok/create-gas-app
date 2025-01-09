@@ -40,8 +40,8 @@ async function askPackageManager(): Promise<PackageManager> {
             message: 'Which package manager do you use?',
             choices: [
                 { name: 'npm', value: 'npm' },
-                { name: 'yarn', value: 'yarn' },
                 { name: 'pnpm', value: 'pnpm' },
+                { name: 'yarn', value: 'yarn' },
             ],
         },
     ]);

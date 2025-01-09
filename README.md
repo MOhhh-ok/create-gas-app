@@ -26,5 +26,5 @@ npm i @masa-dev/create-gas-app
 ## Usage
 
 ```
-npm create-gas-app
+npx create-gas-app
 ```

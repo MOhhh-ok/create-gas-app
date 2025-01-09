@@ -2,6 +2,6 @@
     "scripts": {
         "dev": "tsc --watch",
         "build": "tsc & cp src/appsscript.json dist/appsscript.json",
-        "deploy": "clasp push"
+        "push": "clasp push"
     }
 }
