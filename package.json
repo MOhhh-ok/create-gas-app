@@ -1,10 +1,21 @@
 {
   "name": "@masa-dev/create-gas-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
   "description": "Create a new Google Apps Script project with typescript, bundle supported.",
+  "keywords": [
+    "google apps script",
+    "gas",
+    "typescript",
+    "clasp",
+    "vite"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohhh-ok/create-gas-app"
+  },
   "bin": {
     "create-gas-app": "./dist/main.js"
   },
