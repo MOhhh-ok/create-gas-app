@@ -21,7 +21,8 @@
   },
   "files": [
     "dist",
-    "assets"
+    "assets",
+    "assets/**/.gitignore"
   ],
   "scripts": {
     "build": "tsc",
