@@ -3,6 +3,9 @@
         "start": "pnpm i && create-gas-app"
     },
     "devDependencies": {
-        "@masa-dev/create-gas-app": "file:../"
+        "@google/clasp": "^2.5.0",
+        "@masa-dev/create-gas-app": "file:../",
+        "@types/google-apps-script": "^1.0.91",
+        "typescript": "^5.7.3"
     }
 }

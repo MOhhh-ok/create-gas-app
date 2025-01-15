@@ -8,9 +8,11 @@ This tool will:
 3. Set up clasp configuration
 4. Create basic project structure (src/dist directories)
 5. Configure build scripts for TypeScript compilation and deployment
+6. Vite bundle support.
 
 Features:
 - TypeScript support for better development experience
+- Vite bundle support.
 - Automatic clasp setup and login
 - Support for npm, yarn, and pnpm
 - Watch mode for development

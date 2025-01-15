@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc && cp appsscript.json dist/appsscript.json",
+    "push": "tsc && cp appsscript.json dist/appsscript.json && clasp push"
+  }
+}

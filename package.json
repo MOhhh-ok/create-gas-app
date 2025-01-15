@@ -1,30 +1,30 @@
 {
-    "name": "@masa-dev/create-gas-app",
-    "version": "0.2.1",
-    "publishConfig": {
-        "access": "public"
-    },
-    "description": "Create a new Google Apps Script project with typescript",
-    "bin": {
-        "create-gas-app": "./dist/main.js"
-    },
-    "files": [
-        "dist",
-        "assets"
-    ],
-    "scripts": {
-        "build": "tsc",
-        "dev": "tsc --watch"
-    },
-    "dependencies": {
-        "@tsconfig/node20": "^20.1.4",
-        "child_process": "^1.0.2",
-        "fs-extra": "^11.2.0",
-        "inquirer": "^12.2.0",
-        "path": "^0.12.7",
-        "readline": "^1.3.0"
-    },
-    "devDependencies": {
-        "@types/fs-extra": "^11.0.4"
-    }
+  "name": "@masa-dev/create-gas-app",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Create a new Google Apps Script project with typescript, bundle supported.",
+  "bin": {
+    "create-gas-app": "./dist/main.js"
+  },
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "child_process": "^1.0.2",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^12.3.2",
+    "path": "^0.12.7",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4"
+  }
 }

@@ -1,8 +1,0 @@
-{
-    "private": true,
-    "scripts": {
-        "dev": "tsc --watch",
-        "build": "tsc & cp src/appsscript.json dist/appsscript.json",
-        "push": "clasp push"
-    }
-}
