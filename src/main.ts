@@ -15,7 +15,7 @@ async function main() {
       message: 'Which do you want to use?',
       choices: [
         { name: 'basic', value: 'basic' },
-        { name: 'vite bundle', value: 'vite' },
+        { name: 'esbuild bundle', value: 'esbuild' },
       ],
     },
   ]);

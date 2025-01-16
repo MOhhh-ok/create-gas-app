@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc && node build.js",
+    "push": "tsc && node build.js && clasp push"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.5.0",
+    "@types/google-apps-script": "^1.0.91",
+    "@types/node": "^22.10.7",
+    "esbuild": "^0.24.2",
+    "esbuild-gas-plugin": "^0.8.0",
+    "fs-extra": "^11.3.0",
+    "typescript": "^5.7.3"
+  }
+}

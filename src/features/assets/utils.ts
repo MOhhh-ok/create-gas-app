@@ -1,7 +1,7 @@
 import { constants, copyFileSync, copySync, mkdirSync } from 'fs-extra';
 import path from 'path/posix';
 
-type AssetsDir = 'basic' | 'vite';
+type AssetsDir = 'basic' | 'esbuild';
 
 export function copyFiles(dir: AssetsDir = 'basic') {
   console.log('Copying assets...');
