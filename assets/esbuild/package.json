@@ -2,10 +2,10 @@
   "private": true,
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc && tsx tasks.ts build",
-    "push": "tsx tasks.ts change && tsx tasks.ts build && clasp push",
-    "push:stag": "tsx tasks.ts change stag && tsx tasks.ts build && clasp push",
-    "push:prod": "tsx tasks.ts change prod && tsx tasks.ts build && clasp push"
+    "build": "tsx tasks.ts --bundle",
+    "push": "tsx tasks.ts --change dev --bundle --push",
+    "push:stag": "tsx tasks.ts --change stag --bundle --push",
+    "push:prod": "tsx tasks.ts --change prod --bundle --push"
   },
   "devDependencies": {
     "@google/clasp": "^2.5.0",
@@ -16,6 +16,7 @@
     "fs-extra": "^11.3.0",
     "typescript": "^5.7.3",
     "commander": "^13.0.0",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "tsx": "^4.19.2"
   }
 }

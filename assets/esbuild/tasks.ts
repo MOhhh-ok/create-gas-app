@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import { program } from 'commander';
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
@@ -8,14 +9,36 @@ const srcDir = 'src';
 const distDir = 'dist';
 
 program
-  .command('change')
-  .argument('[env]', availabelEnvs.join(', '))
-  .action((env) => {
-    changeEnv(env);
-  });
+  .option('--change <env>', 'change env')
+  .option('--build', 'build')
+  .option('--bundle', 'bundle')
+  .option('--push', 'push')
+  .parse();
 
-program.command('build').action(build);
-program.parse();
+async function main() {
+  if (program.opts().change) {
+    await changeEnv(program.opts().change);
+  }
+
+  if (program.opts().build) {
+    await build();
+  }
+
+  if (program.opts().bundle) {
+    await bundle();
+  }
+
+  if (program.opts().push) {
+    await push();
+  }
+}
+
+main().catch((err: any) => {
+  console.error(err.message);
+  process.exit(1);
+});
+
+////////////////////////////////////////////////////////////
 
 async function changeEnv(env: (typeof availabelEnvs)[number] = 'dev') {
   const envSuffixes: Record<(typeof availabelEnvs)[number], string> = {
@@ -25,22 +48,19 @@ async function changeEnv(env: (typeof availabelEnvs)[number] = 'dev') {
   };
 
   if (!availabelEnvs.includes(env)) {
-    console.error(`Invalid environment: ${env}`);
-    return;
+    throw new Error(`Invalid environment: ${env}`);
   }
   const envPath = `.env${envSuffixes[env]}`;
   const claspJsonPath = '.clasp.json';
 
   if (!fs.existsSync(envPath)) {
-    console.error(`${envPath} not found`);
-    return;
+    throw new Error(`${envPath} not found`);
   }
 
   dotenv.config({ path: envPath });
   const scriptId = process.env.SCRIPT_ID;
   if (!scriptId) {
-    console.error(`SCRIPT_ID not found on ${envPath}`);
-    return;
+    throw new Error(`SCRIPT_ID not found on ${envPath}`);
   }
 
   const data = {
@@ -52,7 +72,7 @@ async function changeEnv(env: (typeof availabelEnvs)[number] = 'dev') {
   console.log(`env changed to ${env}`);
 }
 
-async function build() {
+async function bundle() {
   const { GasPlugin } = require('esbuild-gas-plugin');
 
   require('esbuild')
@@ -63,7 +83,16 @@ async function build() {
       plugins: [GasPlugin],
     })
     .catch((e: any) => {
-      console.error(e);
-      process.exit(1);
+      throw new Error(e);
     });
+
+  fs.copyFileSync('appsscript.json', path.join(distDir, 'appsscript.json'));
+}
+
+async function build() {
+  execSync('tsc', { stdio: 'inherit' });
+}
+
+async function push() {
+  execSync('clasp push', { stdio: 'inherit' });
 }

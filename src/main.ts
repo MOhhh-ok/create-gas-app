@@ -5,9 +5,11 @@ import { copyFiles } from './features/assets/utils';
 import { createClaspProject } from './features/clasp/utils';
 import { initCwd } from './features/exec/utils';
 import { installPackages } from './features/packageManager/utils';
+import { program } from 'commander';
+import { options } from './features/common/options';
 
 async function main() {
-  await initCwd();
+  await initCwd(options.dir);
   const res = await inquirer.prompt([
     {
       type: 'select',
