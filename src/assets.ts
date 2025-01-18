@@ -4,10 +4,13 @@ import path from 'path/posix';
 type AssetsDir = 'basic' | 'esbuild';
 
 export function copyFiles(dir: AssetsDir = 'basic') {
-  console.log('Copying assets...');
+  doCopy('common');
+  doCopy(dir);
+}
 
-  const srcDir = path.join(__dirname, '..', '..', '..', 'assets', dir);
+async function doCopy(dir: string) {
+  const srcDir = path.join(__dirname, '..', 'assets', dir);
   const distDir = path.join(process.cwd());
-  console.log('copying', { srcDir, distDir });
+  console.log('copy assets', dir);
   copySync(srcDir, distDir);
 }

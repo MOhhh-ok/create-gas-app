@@ -2,11 +2,31 @@ import { constants, mkdirSync, moveSync } from 'fs-extra';
 import path from 'path';
 import fs from 'fs-extra';
 import { execSync } from 'child_process';
+import inquirer from 'inquirer';
 
 type ClaspData = {
   scriptId: string;
   rootDir: string;
 };
+
+export async function initExistingClaspProject() {
+  const res = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'scriptId',
+      message: 'Enter the script ID:',
+    },
+  ]);
+  const scriptId = res.scriptId as string;
+  if (!scriptId) {
+    throw new Error('Script ID is required');
+  }
+
+  const claspJsonPath = createClaspJsonPath();
+  const claspData: ClaspData = { scriptId, rootDir: './dist' };
+  fs.writeFileSync(claspJsonPath, JSON.stringify(claspData, null, 2), 'utf8');
+  editEnvFiles(claspData);
+}
 
 export function createClaspProject() {
   console.log('Creating clasp project...');
