@@ -1,13 +1,12 @@
 # Create GAS App
 
-A CLI tool to set up a Google Apps Script with TypeScript and clasp.
+A powerful CLI tool to easily set up your Google Apps Script with TypeScript and Clasp! 🚀
 
-This tool will:
-1. Initialize a TypeScript project
-3. Set up clasp configuration
-4. Switch env support (development, staging, production)
-5. Esbuild bundle support
+This tool will help you:
 
+1. ✨ Initialize a TypeScript + Clasp project for smooth development
+2. 🌍 Switch environment support (dev, staging, production) to streamline your workflow
+3. ⚡️ Esbuild bundle support for efficient bundling
 
 ## Install
 
