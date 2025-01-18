@@ -73,14 +73,15 @@ async function changeEnv(env: (typeof availabelEnvs)[number] = 'dev') {
 }
 
 async function bundle() {
-  const { GasPlugin } = require('esbuild-gas-plugin');
-
-  require('esbuild')
+  console.log('bundle with esbuild');
+  const { GasPlugin } = await import('esbuild-gas-plugin');
+  const esbuild = await import('esbuild');
+  await esbuild
     .build({
       entryPoints: [path.join(srcDir, 'index.ts')],
       bundle: true,
       outfile: path.join(distDir, 'bundle.js'),
-      plugins: [GasPlugin],
+      plugins: [GasPlugin as any],
     })
     .catch((e: any) => {
       throw new Error(e);
@@ -90,9 +91,11 @@ async function bundle() {
 }
 
 async function build() {
+  console.log('build with tsc');
   execSync('tsc', { stdio: 'inherit' });
 }
 
 async function push() {
+  console.log('clasp push');
   execSync('clasp push', { stdio: 'inherit' });
 }
