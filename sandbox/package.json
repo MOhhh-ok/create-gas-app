@@ -1,4 +1,5 @@
 {
+  "private": true,
   "scripts": {
     "start": "rm -r test || true && create-gas-app --dir test"
   },
