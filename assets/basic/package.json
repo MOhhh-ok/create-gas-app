@@ -2,7 +2,15 @@
   "private": true,
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc && cp appsscript.json dist/appsscript.json",
-    "push": "tsc && cp appsscript.json dist/appsscript.json && clasp push"
+    "build": "tsx tasks.ts --build",
+    "push": "tsx tasks.ts --change dev --build --push",
+    "push:stag": "tsx tasks.ts --change stag --build --push",
+    "push:prod": "tsx tasks.ts --change prod --build --push"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.5.0",
+    "@types/google-apps-script": "^1.0.91",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
   }
 }
