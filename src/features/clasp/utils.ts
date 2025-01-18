@@ -3,14 +3,25 @@ import path from 'path';
 import fs from 'fs-extra';
 import { execSync } from 'child_process';
 
+type ClaspData = {
+  scriptId: string;
+  rootDir: string;
+};
+
 export function createClaspProject() {
   console.log('Creating clasp project...');
   mkdirSync('./src', { recursive: true });
   mkdirSync('./dist', { recursive: true });
   try {
     execSync('clasp create', { stdio: 'inherit' });
-    editClaspJson();
-    moveAppsscriptJson();
+    const claspJsonPath = createClaspJsonPath();
+    const claspData = getClaspData(claspJsonPath);
+    fs.writeFileSync(
+      claspJsonPath,
+      JSON.stringify({ ...claspData, rootDir: './dist' }, null, 2),
+      'utf8'
+    );
+    editEnvFiles(claspData);
   } catch (err: any) {
     console.error('Failed to create clasp project:', err.message);
     if (err.message.match(/logged in/)) {
@@ -30,19 +41,19 @@ function loginToClasp() {
   }
 }
 
-function editClaspJson() {
-  console.log('Editing clasp.json...');
-  const claspJsonPath = path.join(process.cwd(), '.clasp.json');
-  const claspJson = fs.readFileSync(claspJsonPath, 'utf8');
-  const claspData = JSON.parse(claspJson);
-  claspData.rootDir = './dist';
-  fs.writeFileSync(claspJsonPath, JSON.stringify(claspData, null, 2), 'utf8');
-  console.log('clasp.json has been edited.');
+function createClaspJsonPath() {
+  return path.join(process.cwd(), '.clasp.json');
+}
+function getClaspData(path: string) {
+  const claspJson = fs.readFileSync(path, 'utf8');
+  return JSON.parse(claspJson) as ClaspData;
 }
 
-function moveAppsscriptJson() {
-  // const appsscriptJsonPath = path.join(process.cwd(), 'appsscript.json');
-  // const destinationPath = path.join(process.cwd(), 'src', 'appsscript.json');
-  // moveSync(appsscriptJsonPath, destinationPath);
-  // console.log('appsscript.json has been moved.');
+function editEnvFiles(claspData: ClaspData) {
+  let envPath = path.join(process.cwd(), '.env');
+  fs.writeFileSync(envPath, `SCRIPT_ID=${claspData.scriptId}`);
+  for (const fn of ['.env.staging', '.env.production']) {
+    envPath = path.join(process.cwd(), fn);
+    fs.writeFileSync(envPath, `SCRIPT_ID=`);
+  }
 }

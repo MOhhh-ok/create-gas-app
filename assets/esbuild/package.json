@@ -2,8 +2,10 @@
   "private": true,
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc && node build.js",
-    "push": "tsc && node build.js && clasp push"
+    "build": "tsc && tsx tasks.ts build",
+    "push": "tsx tasks.ts change && tsx tasks.ts build && clasp push",
+    "push:stag": "tsx tasks.ts change stag && tsx tasks.ts build && clasp push",
+    "push:prod": "tsx tasks.ts change prod && tsx tasks.ts build && clasp push"
   },
   "devDependencies": {
     "@google/clasp": "^2.5.0",
@@ -12,6 +14,8 @@
     "esbuild": "^0.24.2",
     "esbuild-gas-plugin": "^0.8.0",
     "fs-extra": "^11.3.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "commander": "^13.0.0",
+    "dotenv": "^16.4.7"
   }
 }
